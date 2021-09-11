@@ -27,6 +27,7 @@ for i in range(287):
 # Нахождение обратного курса
     RUBUSD = 1/USDRUB
 
+# Добавление новой строчки с текущими курсами в файл
     with open('rates.csv', 'a') as file:
         file.write(str(USDRUB)+";"+str(RUBUSD)+'\n')
 
