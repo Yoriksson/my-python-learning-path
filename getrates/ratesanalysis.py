@@ -25,8 +25,8 @@ RUBUSD = []
 
 # цикл сортирующий значения в соответствующие списки
 for i in range(0, len(lines)):
-    USDRUB.append(lines[i][0])
-    RUBUSD.append(lines[i][1])
+    USDRUB.append(float(lines[i][0]))
+    RUBUSD.append(float(lines[i][1]))
 
 # вывод для проверки работоспособности
 print(USDRUB)
