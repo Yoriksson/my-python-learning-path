@@ -78,11 +78,3 @@ def avg():
     avgur = sum(ProcFile.usdrub) / len(ProcFile.usdrub)
     avgru = sum(ProcFile.rubusd) / len(ProcFile.rubusd)
     print("Среднее значение курса доллара к рублю:", avgur, "\nСреднее значение курса рубля к доллару:", avgru)
-
-
-# проверка
-
-ru()
-ur()
-avg()
-med()
