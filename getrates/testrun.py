@@ -5,11 +5,13 @@ import getrates
 import ratesanalysis
 
 # вызов функций самопальных модулей
-getrates.ratesget()
-ratesanalysis.avg()
-ratesanalysis.ru()
-ratesanalysis.ur()
-ratesanalysis.med()
+# getrates.ratesget()
+
+date_from_file = ratesanalysis.proc_file()
+ratesanalysis.avg(*date_from_file)
+ratesanalysis.ru(date_from_file[1])
+ratesanalysis.ur(date_from_file[0])
+ratesanalysis.med(*date_from_file)
 
 # вывод на момент теста:
 # Среднее значение курса доллара к рублю: 72.65333333333334
