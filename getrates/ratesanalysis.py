@@ -14,9 +14,10 @@
 # # ввод данных пользователем
 # j = int(input())
 # ...
+from decimal import Decimal
 
 # создаем класс, который будет делать описанное в комментах ниже и давать функциям подсасывать данные
-class ProcFile:
+def proc_file():
     # список для данных полученных из файла
     lines = []
     # открытие файла
@@ -35,46 +36,49 @@ class ProcFile:
 
     # цикл сортирующий значения в соответствующие списки
     for i in range(0, len(lines)):
-        usdrub.append(float(lines[i][0]))
-        rubusd.append(float(lines[i][1]))
+        usdrub.append(Decimal(lines[i][0]))
+        rubusd.append(Decimal(lines[i][1]))
 
     # упорядочивание списков
     usdrub.sort(), rubusd.sort()
+    
+    return usdrub, rubusd
+    
 
 
 # функция выводящая лучший курс обмена долларов на рубли
-def ur():
-    print('Лучший курс обмена долларов на рубли:', ProcFile.usdrub[-1], 'RUB за 1 USD')
+def ur(usdrub):
+    print('Лучший курс обмена долларов на рубли:', round(usdrub[-1]), 'RUB за 1 USD')
 
 
 # функция выводящая лучший курс обмена рублей на доллары
-def ru():
-    print('Лучший курс обмена рублей на доллары:', ProcFile.rubusd[-1], 'USD за 1 RUB')
+def ru(rubusd):
+    print('Лучший курс обмена рублей на доллары:', round(rubusd[-1]), 'USD за 1 RUB')
 
 
 # функция считающая и выводящая медиану
-def med():
-    nu = len(ProcFile.usdrub)
-    nr = len(ProcFile.rubusd)
+def med(usdrub, rubusd):
+    nu = len(usdrub)
+    nr = len(rubusd)
     if nu % 2 == 0:
-        median1 = ProcFile.usdrub[nu // 2]
-        median2 = ProcFile.usdrub[nu // 2 - 1]
+        median1 = usdrub[nu // 2]
+        median2 = usdrub[nu // 2 - 1]
         median = (median1 + median2) / 2
     else:
-        median = ProcFile.usdrub[nu // 2]
-    print("Медиана курса рубля к доллару:", median)
+        median = usdrub[nu // 2]
+    print("Медиана курса рубля к доллару:", round(median))
 
     if nr % 2 == 0:
-        median1r = ProcFile.rubusd[nr // 2]
-        median2r = ProcFile.rubusd[nr // 2 - 1]
+        median1r = rubusd[nr // 2]
+        median2r = rubusd[nr // 2 - 1]
         medianru = (median1r + median2r) / 2
     else:
-        medianru = ProcFile.rubusd[nr // 2]
-    print("Медиана курса доллара к рублю:", medianru)
+        medianru = rubusd[nr // 2]
+    print("Медиана курса доллара к рублю:", round(medianru))
 
 
 # функция считающая и выводящая среднее значение
-def avg():
-    avgur = sum(ProcFile.usdrub) / len(ProcFile.usdrub)
-    avgru = sum(ProcFile.rubusd) / len(ProcFile.rubusd)
-    print("Среднее значение курса доллара к рублю:", avgur, "\nСреднее значение курса рубля к доллару:", avgru)
+def avg(usdrub, rubusd):
+    avgur = sum(usdrub) / len(usdrub)
+    avgru = sum(rubusd) / len(rubusd)
+    print("Среднее значение курса доллара к рублю:", round(avgur), "\nСреднее значение курса рубля к доллару:", round(avgru))
